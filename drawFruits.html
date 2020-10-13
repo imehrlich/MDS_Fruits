@@ -52,20 +52,11 @@
 					radiusList.push(results.data[i]["r"]);
 					hueList.push(results.data[i]["hue"]);
 					satList.push(results.data[i]["sat"]);
-					lightList.push(results.data[i]["light"]);
+					lightList.push(results.data[i]["lum"]);
                     xList.push(results.data[i]["x"]);
                     yList.push(results.data[i]["y"]);
                 
 					}
-
-					localStorage["current.h"] = JSON.stringify(hoffsetList);
-					localStorage["current.v"] = JSON.stringify(voffsetList);
-					localStorage["current.r"] = JSON.stringify(radiusList);
-					localStorage["current.hue"] = JSON.stringify(hueList);
-					localStorage["current.sat"] = JSON.stringify(satList);
-					localStorage["current.light"] = JSON.stringify(lightList);
-                    localStorage["x"] = JSON.stringify(xList);
-                    localStorage["y"] = JSON.stringify(yList);
 
 			class Fruit {
                 constructor(params) {
@@ -81,9 +72,9 @@
 
                 fruitPoints(hoffset, voffset, radius, center_x, center_y){
                     //returns convexhull of all coordinates from the three circles
-                    let leftcirc = this.circPoints({x:center_x-hoffset,y:center_y-voffset/2 + config.stem_height/2}, radius);
-                    let rightcirc = this.circPoints({x:center_x+hoffset,y:center_y-voffset/2 + config.stem_height/2}, radius);
-                    let vertcirc = this.circPoints({x:center_x, y:center_y+voffset/2 + config.stem_height/2}, radius);
+                    let leftcirc = this.circPoints({x:center_x-hoffset,y:center_y+voffset/2 + config.stem_height/2}, radius);
+                    let rightcirc = this.circPoints({x:center_x+hoffset,y:center_y+voffset/2 + config.stem_height/2}, radius);
+                    let vertcirc = this.circPoints({x:center_x, y:center_y-voffset/2 + config.stem_height/2}, radius);
                     let total = leftcirc.concat(rightcirc, vertcirc);
                     let xPoints = total.map(p => p.x)
                     let yPoints = total.map(p => p.y)
